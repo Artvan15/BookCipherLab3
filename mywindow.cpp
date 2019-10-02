@@ -34,33 +34,33 @@ void MyWindow::okEnable(QString str){
 void MyWindow::okPressed(){
     read();
 }
+
 void read(){
     QVector<QString> strings;
-    QFile stih("D:/Games/qtprojects/BookCipherLab3/stih.txt");
+    QFile stih("C:/Users/Ivan Che/Documents/qtProjects/BookCipherLab3/stih.txt");
     if(stih.open(QIODevice::ReadOnly | QIODevice::Text)){
         QTextStream in(&stih);
+        QString temp;
         while(!in.atEnd()){
-            strings.push_back(in.readLine());
+            temp = in.readLine();
+            strings.push_back(temp);
         }
     }
+    for(auto &str : strings){
+        for(size_t ind = 0; ind < str.size(); ++ind){
+            if(ispunct(str.at(ind).toLatin1()) || isspace(str.at(ind).toLatin1()))
+                str.remove(ind,1);
+        }
 
-    QVector<QVector<QString>> words;
-    for(auto &i : strings){
-        QTextStream in(&i);
-        QString temp;
-        QVector<QString> tempVec;
-        for(size_t i = 0; i != 5; ++i)
-            while(!in.atEnd()){
-                in >> temp;
-                tempVec.push_back(temp);
-            }
-        words.push_back(tempVec);
     }
-    QFile("")
-    for(const auto &i : words){
-       for(const auto &j : i)
-           qDebug() << j << " // ";
+
+    QFile write("C:/Users/Ivan Che/Documents/qtProjects/BookCipherLab3/out.txt");
+    if(write.open(QIODevice::WriteOnly)){
+        QTextStream out(&write);
+        for(const auto &i : strings)
+          out << i << endl;
     }
+
 }
 
 void Interface::Message(QString str){
