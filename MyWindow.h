@@ -4,7 +4,6 @@
 #include <QtWidgets>
 #include <QFile>
 #include <string>
-#include <vector>
 #include <bitset>
 #include <algorithm>
 
@@ -14,16 +13,22 @@ class MyWindow : public QDialog
 public:
     MyWindow(QWidget *parent = nullptr);
 private:
+    QComboBox *mode;
     QLabel *label;
     QLineEdit *line;
     QPushButton *okey;
-    QVector<std::pair<QChar, std::pair<size_t, size_t>>> chars;
+    QPushButton *read_but;
+    QMap<QChar, QVector<std::pair<size_t, size_t>>> chars;
+    QVector<QString> strings_stih;
 
 private:
+    void read_insert_map();
     QString cipher();
+    QString decryption();
 private slots:
     void okEnable(QString);
     void okPressed();
+    void readPressed();
 signals:
     void Sig(QString);
 

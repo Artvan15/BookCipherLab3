@@ -23,7 +23,8 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     mywindow \
-    mywindow.h
+    mywindow.h \
+    random.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
