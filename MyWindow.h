@@ -17,9 +17,10 @@ private:
     QLabel *label;
     QLineEdit *line;
     QPushButton *okey;
+    QVector<std::pair<QChar, std::pair<size_t, size_t>>> chars;
 
 private:
-
+    QString cipher();
 private slots:
     void okEnable(QString);
     void okPressed();
